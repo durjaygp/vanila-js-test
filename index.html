@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Post Titles and Bodies</h1>
+  <ul id="post-list"></ul>
+  <script>
+    async function getPost() {
+      try {
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts/");
+        let data = await response.json();
+        
+        let postList = document.getElementById("post-list");
+        data.forEach(post => {
+          let listItem = document.createElement("li");
+          listItem.innerHTML = `<strong>${post.title}</strong><br>${post.body}`;
+          postList.appendChild(listItem);
+        });
+      } catch (error) {
+        console.log("Error:", error);
+      }
+    }
+    getPost();
+  </script>
+</body>
+</html>
